@@ -1,0 +1,27 @@
+boot.o: boot.S multiboot.h x86_desc.h types.h
+enablepaging.o: enablepaging.S
+keyboard_wrapper.o: keyboard_wrapper.S
+pagedirectory.o: pagedirectory.S
+rtc_wrapper.o: rtc_wrapper.S
+systemcall_wrapper.o: systemcall_wrapper.S
+x86_desc.o: x86_desc.S x86_desc.h types.h
+blank_page.o: blank_page.c blank_page.h pagedirectory.h enablepaging.h \
+  types.h systemcall.h lib.h terminal.h rtc.h file.h x86_desc.h
+exceptions.o: exceptions.c exceptions.h lib.h types.h
+file.o: file.c file.h lib.h types.h systemcall.h terminal.h rtc.h \
+  x86_desc.h
+i8259.o: i8259.c i8259.h types.h lib.h
+idt.o: idt.c idt.h exceptions.h lib.h types.h x86_desc.h interrupts.h \
+  keyboard.h keyboard_wrapper.h rtc_wrapper.h
+interrupts.o: interrupts.c interrupts.h lib.h types.h keyboard.h rtc.h
+kernel.o: kernel.c multiboot.h types.h x86_desc.h lib.h i8259.h debug.h \
+  tests.h file.h systemcall.h terminal.h rtc.h idt.h exceptions.h \
+  keyboard.h interrupts.h blank_page.h
+keyboard.o: keyboard.c keyboard.h lib.h types.h i8259.h
+lib.o: lib.c lib.h types.h keyboard.h
+rtc.o: rtc.c rtc.h types.h lib.h i8259.h
+systemcall.o: systemcall.c systemcall.h lib.h types.h terminal.h rtc.h \
+  file.h x86_desc.h blank_page.h
+terminal.o: terminal.c keyboard.h lib.h types.h i8259.h terminal.h
+tests.o: tests.c tests.h file.h lib.h types.h systemcall.h terminal.h \
+  rtc.h x86_desc.h keyboard.h
